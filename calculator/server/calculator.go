@@ -1,10 +1,10 @@
-package service
+package main
 
 import (
 	"context"
 	"log"
 
-	pb "github.com/AlonePereira/sum-api/greet/proto"
+	pb "github.com/AlonePereira/sum-api/calculator/proto"
 )
 
 type server struct {
@@ -13,5 +13,7 @@ type server struct {
 
 func (s *server) Calculate(ctx context.Context, in *pb.CalculatorRequest) (*pb.CalculatorResponse, error) {
 	log.Printf("Request %v", in)
-	return &pb.CalculatorResponse{}, nil
+	return &pb.CalculatorResponse{
+		Result: in.FirstNumber + in.SecondNumber,
+	}, nil
 }
